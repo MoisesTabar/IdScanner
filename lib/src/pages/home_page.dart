@@ -27,13 +27,13 @@ class _HomePageState extends State<HomePage> {
       _barcodeData = await FlutterBarcodeScanner.scanBarcode(
         '#FFFFFF', 
         'Cancelar lectura', 
-        true, 
-        ScanMode.BARCODE
+        false, 
+        ScanMode.QR
       );
 
       if(!mounted) return;
 
-      setState(() => _data = _barcodeData);
+      setState(() => _data = _barcodeData.replaceAll('-', ''));
     }
     on PlatformException {
       _data = 'Ha ocurrido un error al escanear el codigo de barras';
