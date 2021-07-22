@@ -47,7 +47,7 @@ class _CustomCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
-              color: Colors.black38,
+              color: Colors.black12,
               offset: Offset(0, 7),
               blurRadius: 10,
             )
@@ -57,7 +57,12 @@ class _CustomCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             _CardImage(imageUrl: personData.foto),
-            _CardDetails(name: personData.nombres, id: personData.cedula)
+            _CardDetails(name: personData.nombres, id: personData.cedula),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: _DetailsButton()
+            )
           ],
         ),
       ), 
@@ -78,13 +83,13 @@ class _CardDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 50),
+      padding: EdgeInsets.only(right: 90),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         width: double.infinity,
-        height: 70,
+        height: 65,
         decoration: BoxDecoration(
-          color: Colors.blue.shade500,
+          color: Colors.blue.shade900,
           borderRadius: BorderRadius.only(bottomRight: Radius.circular(25), topRight: Radius.circular(25))
         ),
         child: Column(
@@ -115,6 +120,39 @@ class _CardDetails extends StatelessWidget {
   }
 }
 
+class _DetailsButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 50,
+      child: GestureDetector(
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 15),
+                child: Icon(Icons.edit, color: Colors.white),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Text('Detalles', style: TextStyle(color: Colors.white, fontSize: 20)),
+              )
+            ],
+          ),
+        ),
+        onTap: () => print('a'),
+      ),    
+      alignment: Alignment.center ,
+      decoration: BoxDecoration(
+        color: Colors.blue.shade900,
+        borderRadius: BorderRadius.only(topRight: Radius.circular(25), bottomLeft: Radius.circular(25))
+      ),
+    );
+  }
+}
+
 class _CardImage extends StatelessWidget {
 
   late final String imageUrl;
@@ -131,7 +169,7 @@ class _CardImage extends StatelessWidget {
         width: double.infinity,
         height: 400,
         child: FadeInImage(
-          placeholder: AssetImage('assets/not-found.png'),
+          placeholder: NetworkImage('https://i.stack.imgur.com/y9DpT.jpg'), 
           image: NetworkImage(imageUrl), 
           fit: BoxFit.cover
         ),
