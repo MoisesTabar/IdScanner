@@ -78,7 +78,7 @@ class _CardDetails extends StatelessWidget {
   late final String name;
   late final String id;
   late final List<String> lastnames;
-  late final DateTime birthdate;
+  late final DateTime? birthdate;
   late final String birthplace;
   late final String sex;
 
@@ -96,9 +96,9 @@ class _CardDetails extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       width: double.infinity,
-      height: 130,
+      height: 115,
       decoration: BoxDecoration(
-        color: Colors.blue.shade900,
+        color: Colors.transparent,
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(25))
       ),
       child: Column(
@@ -125,7 +125,7 @@ class _CardDetails extends StatelessWidget {
           Text(
             'Lugar de nacimiento: $birthplace', 
             style: TextStyle(
-              fontSize: 18, 
+              fontSize: 16, 
               color: Colors.white, 
               fontWeight: FontWeight.bold
             ),
@@ -133,7 +133,7 @@ class _CardDetails extends StatelessWidget {
           Text(
             'Fecha de nacimiento: ${birthdate.toString().replaceAll('00:00:00.000', '')}', 
             style: TextStyle(
-              fontSize: 18, 
+              fontSize: 16, 
               color: Colors.white, 
               fontWeight: FontWeight.bold
             ),
@@ -141,7 +141,7 @@ class _CardDetails extends StatelessWidget {
           Text(
             'Sexo: $sex', 
             style: TextStyle(
-              fontSize: 18, 
+              fontSize: 16, 
               color: Colors.white, 
               fontWeight: FontWeight.bold
             ),
@@ -165,9 +165,9 @@ class _CardImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
       child: Container(
-        width: double.infinity,
-        height: 660,
         child: FadeInImage(
+          width: 700,
+          height: 500,
           placeholder: NetworkImage('https://i.stack.imgur.com/y9DpT.jpg'), 
           image: NetworkImage(imageUrl), 
           fit: BoxFit.cover

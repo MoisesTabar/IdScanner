@@ -46,7 +46,7 @@ class Person {
   final String nombres;
   final String apellido1;
   final String apellido2;
-  final DateTime fechaNacimiento;
+  final DateTime? fechaNacimiento;
   final String lugarNacimiento;
   final int idCategoria;
   final String idSexo;
@@ -80,26 +80,26 @@ class Person {
   final String foto;
 
   factory Person.fromJson(Map<String, dynamic> json) => Person(
-    cedula: json["Cedula"],
-    nombres: json["Nombres"],
-    apellido1: json["Apellido1"],
-    apellido2: json["Apellido2"],
-    fechaNacimiento: DateTime.parse(json["FechaNacimiento"]),
-    lugarNacimiento: json["LugarNacimiento"],
-    idCategoria: json["IDCategoria"],
-    idSexo: json["IdSexo"],
-    idEstadoCivil: json["IdEstadoCivil"],
-    idOcupacion: json["IdOcupacion"],
-    idNacionalidad: json["IDNacionalidad"],
-    idMunicipio: json["IDMunicipio"],
-    idColegio: json["IDColegio"],
+    cedula: json["Cedula"] == null ? "" : json["Cedula"],
+    nombres: json["Nombres"] == null ? "" : json["Nombres"],
+    apellido1: json["Apellido1"] == null ? "" : json["Apellido1"],
+    apellido2: json["Apellido2"] == null ? "" : json["Apellido2"],
+    fechaNacimiento: json["FechaNacimiento"] == null ? DateTime.now() : DateTime.parse(json["FechaNacimiento"]),
+    lugarNacimiento: json["LugarNacimiento"] == null ? "" : json["LugarNacimiento"],
+    idCategoria: json["IDCategoria"] == null ? 0 : json["IDCategoria"],
+    idSexo: json["IdSexo"] == null ? "" : json["IdSexo"],
+    idEstadoCivil: json["IdEstadoCivil"] == null ? "" : json["IdEstadoCivil"],
+    idOcupacion: json["IdOcupacion"] == null ? 0 : json["IdOcupacion"],
+    idNacionalidad: json["IDNacionalidad"] == null ? 0 : json["IDNacionalidad"],
+    idMunicipio: json["IDMunicipio"] == null ? 0 : json["IDMunicipio"],
+    idColegio: json["IDColegio"] == null ? 0 : json["IDColegio"],
     idCausaCancelacion: json["IDCausaCancelacion"],
-    idEstatus: json["IDEstatus"],
+    idEstatus: json["IDEstatus"] == null ? "" : json["IDEstatus"],
     estatusCedulaAzul: json["EstatusCedulaAzul"],
     cedulaAnterior: json["CedulaAnterior"],
-    munCed: json["mun_ced"],
-    seqCed: json["seq_ced"],
-    verCed: json["ver_ced"],
+    munCed: json["mun_ced"] == null ? "" : json["mun_ced"],
+    seqCed: json["seq_ced"] == null ? "" : json["seq_ced"],
+    verCed: json["ver_ced"] == null ? "" : json["ver_ced"],
     v2004: json["V2004"],
     v2008: json["V2008"],
     v2012: json["V2012"],
@@ -114,7 +114,7 @@ class Person {
     ilocalizable: json["Ilocalizable"],
     apodo: json["Apodo"],
     padronLf: json["PadronLF"],
-    ok: json["ok"],
-    foto: json["foto"],
+    ok: json["ok"] == null ? false : json["ok"],
+    foto: json["foto"] == null ? "" : json["foto"],
   );
 }

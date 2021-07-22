@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
         '#FFFFFF', 
         'Cancelar lectura', 
         false, 
-        ScanMode.QR
+        ScanMode.BARCODE
       );
 
       if(!mounted) return;
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               ),
               textAlign: TextAlign.center,
             )
-            : PersonCard(futureData: provider.fetchPersonData(_data))
+            : Text(_data) // PersonCard(futureData: provider.fetchPersonData(_data))
           ),
         ),
       ),
